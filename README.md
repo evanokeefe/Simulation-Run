@@ -1,7 +1,7 @@
 # README
 This repository holds the code intended to be used for the Mesoscale Computational Modeling Research Group. Scripts include those to submit runs of the phase-field simulation to condor automatically as well as scraping all of the resulting composition concentration data from the .dat files and organizing it into a '.csv' file.
 
-Script Descriptions:
+# Script Descriptions:
 
 sim-scrip.py: This script is intended to be run on the CHTC servers. The script requires a 'run_files' directory and a 'sim_plan.csv' file. The 'sim_plan.csv' outlines the parameters for the simulations that need to be run. Each row will lead to new run of the simulation with the parameters outlined in the row. The 'run_files' directory contains all of the files necessary to run the simulation, and the script will update the 'multiple-batch.sh' file to submit the necessary number of runs and number of particles for each run based on the range provided in the simulation plan. The simulation runs will be submitted to the condor queue. Since each run of the simulation is made up of many individual jobs on the server, the simulation runs may take a few hours to complete on the server. When the simulation completes, each 'number' directory will contain 'effElectricalConductivity.dat' as well as the the other output files.
 
