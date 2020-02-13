@@ -1,4 +1,4 @@
-### Steps to Run the sim_script.py Script
+### Steps to Run the sim_script.py Script:
 1. Download the script, plan, and run files
 1. Unzip the run files folder
 1. ssh into the CHTC server
