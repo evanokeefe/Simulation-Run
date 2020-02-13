@@ -51,9 +51,9 @@ def send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step):
     f = open("multiple-batch.sh", "r")
 
     s = f.read()
-    begin = s[:207]
-    mid = s[207:228]
-    end = s[228:]
+    begin = s[:s.find("for")] + "for"
+    mid = s[s.find("for")+3:s.find(" i")]
+    end = s[s.find(" i"):]
 
     f.close()
 
@@ -68,7 +68,6 @@ def send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step):
     os.system("chmod 777 multiple-batch.sh")
     os.system("./multiple-batch.sh")
     os.chdir(cwd)
-    return path
 
 def run_sim(plan):
     reader = csv.reader(open('sim_plan.csv'))
@@ -98,20 +97,11 @@ def run_sim(plan):
         
         print("lower:", lower, "upper:", upper,"number of structure to be generated:", num_of_structures)
     
-        path = send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step)
-        dir_name = os.path.basename(path)
-        
-        compressed =f"tar -zcvf {dir_name}.tar.gz {path}"
-        os.system(compressed)
-        
-        #scp = f"scp {username}@{hostname}:/home/{username}{path} ./{out_path}"
-        #os.system(scp)
-        
-        remove = f"rm -r {path}"
-        os.system(remove)
+        send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step)
         
         end = time.time()
         elapsed = (end - start)/60
-        print("Simulation run took", elapsed, "minutes")
+        elapsed = round(elapsed, 2)
+        print("Simulation runs queued, took", elapsed, "minutes")
                 
 run_sim("sim_plan.csv")
