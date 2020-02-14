@@ -1,6 +1,7 @@
 ### Steps to Run the sim_script.py Script:
 1. Download the script, plan, and run files
 1. Unzip the run files folder
+1. Update 'sim_plan.csv' with necessary parameters for the planned runs
 1. ssh into the CHTC server
 1. Change directory to where you want the output directories to be created
 1. Confirm python is installed on ther server
