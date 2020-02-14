@@ -18,21 +18,9 @@ def send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step):
     except FileExistsError:
         os.chdir(path)
 
-        # Creating the number file
-        # This file has 3 lines the first being the name the following are the parameters of the simulation
-        if os.path.exists("number.txt") == False:
-            a_line = f"{a1} {a2} {a3}\n"
-            b_line = f"{b1} {b2} {b3}"
-
-            f = open("number.txt", "w")
-            f.write("number\n")
-            f.write(a_line)
-            f.write(b_line)
-            f.close()
-
     # Copying over run files from the run_file folder to the simulation folder
     # User must have a "run_files" folder before beginning
-    files = ["EffProperty.exe", "multiple-batch.sh", "param.in", "parameter.in", "run_single.sh", "Structure.f90",
+    files = ["EffProperty.exe", "multiple-batch.sh", "parameter.in", "run_single.sh", "Structure.f90",
              "submit-single.sub"]
     run_files = os.path.join(cwd, "run_files")
 
@@ -47,9 +35,19 @@ def send_job(shape, a1, a2, a3, b1, b2, b3, lower, upper, step):
 
     os.chdir(path)
     os.system("chmod 777 EffProperty.exe")
+    # Edit 'param.in' file
+    # This file has 3 lines the first being the name the following are the parameters of the simulation
+    if os.path.exists("param.in") == False:
+        a_line = f"{a1} {a2} {a3}\n"
+        b_line = f"{b1} {b2} {b3}"
 
+        f = open("param.in", "w")
+        f.write("number\n")
+        f.write(a_line)
+        f.write(b_line)
+        f.close()
+    
     f = open("multiple-batch.sh", "r")
-
     s = f.read()
     begin = s[:s.find("for")] + "for"
     mid = s[s.find("for")+3:s.find(" i")]
