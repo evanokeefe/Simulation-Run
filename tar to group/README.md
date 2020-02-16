@@ -2,7 +2,7 @@
 1. Download the script
 1. If desired, update the 'dir_name' on line 27 to change the destination of the tar file
 1. ssh into the CHTC server
-1. Change directory to simulation output directories are contained
+1. Change directory to where simulation output directories are contained
 1. Confirm python is installed on ther server
     1. Run: `python3 --version`
     1. Version should be 3.6 or higher
