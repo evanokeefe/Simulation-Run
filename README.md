@@ -1,4 +1,4 @@
-# Solid Electrolyte: Machine Learning to Optimize Condutuctivity
+# Solid Electrolyte: Machine Learning to Optimize Conductivity
 ## Repo Introduction
 This repository holds the code intended to be used for the Mesoscale Computational Modeling Research Group. More information about the project and the research group can be found on the [group website](https://mesomod.weebly.com/featured-research-topics.html) Scripts include those to submit runs of the phase-field simulation to condor automatically as well as scraping all of the resulting composition concentration data from the .dat files and organizing it into a '.csv' file.
 
